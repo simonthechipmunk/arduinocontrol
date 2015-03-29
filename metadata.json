@@ -1,0 +1,15 @@
+{
+  "description": "Control Arduino (Atmega328) In/Outs through a Gnome3 menu with sliders and toggle switches\n\n* Connect your Arduino via USB-Serial or Ethernet\n* Automatic synchronization between multiple clients on the network\n* Please read the README.md file in the extension directory for information on setting up your Arduino", 
+  "name": "Arduino Control", 
+  "settings-schema": "org.gnome.shell.extensions.arduinocontrol", 
+  "shell-version": [
+    "3.10", 
+    "3.12", 
+    "3.14",
+    "3.16"
+  ], 
+  "url": "https://github.com/simonthechipmunk/arduinocontrol", 
+  "uuid": "arduinocontrol@simonthechipmunk.noreply.com", 
+  "gettext-domain": "arduinocontrol",
+  "version": 4
+}

@@ -1,0 +1,14 @@
+<schemalist>
+    <schema id="org.gnome.shell.extensions.arduinocontrol" path="/org/gnome/shell/extensions/arduinocontrol/">
+        <key name="ip" type="s">
+            <default>'192.168.178.60'</default>
+            <summary>Server IP Address</summary>
+            <description>The IP Adress of the Socket Server.</description>
+        </key>
+        <key name="port" type="s">
+            <default>'21567'</default>
+            <summary>Server Port</summary>
+            <description>The Port the Socket Server is listening on</description>
+        </key>
+    </schema>
+</schemalist>
