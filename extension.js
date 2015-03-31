@@ -42,6 +42,8 @@ const PopupMenu = imports.ui.popupMenu;
 const Slider = imports.ui.slider;
 
 // utilities for external programs and command line
+const Config = imports.misc.config;
+const ShellVersion = Config.PACKAGE_VERSION.split('.');
 const Util = imports.misc.util;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
@@ -63,7 +65,7 @@ const ArduinoMenuCreator = Me.imports.menu; // import menu module
 
 
 // define global variables
-let panelmenu, sectionBox, inStr, sockClient, sockConnection, output_reader, cancel_read, cancel_connect;
+let panelmenu, sectionBox, icon, inStr, sockClient, sockConnection, output_reader, cancel_read, cancel_connect;
 
 let network_monitor, network_check;
 let event=null, servernotresponding, firstrun;
@@ -152,22 +154,15 @@ function disable() {
 function _ArduinoPanelMenu(set) {
 // create the extension menu in the status area with slider and toggle switch
 
-	// extension settings shortcut
-	let settingsMenuItem = new PopupMenu.PopupMenuItem("Settings", { reactive: true });
-	settingsMenuItem.connect('activate', function() { imports.misc.util.spawn(['gnome-shell-extension-prefs',
-			 'arduinocontrol@simonthechipmunk.noreply.com']); });
 
-
-	if (set == "show" && panelmenu && icon.get_icon_name() == syncIcon ) {
+	if (set == "show" && panelmenu && (icon.get_icon_name() == syncIcon || icon.get_icon_name() == initsyncIcon) ) {
 	// show the menu
 
 		// change menu icon
 		icon.set_icon_name(runIcon);
 
 		// remove any child items in the panelmenu
-		let visibleChildren = panelmenu.menu.box.get_children().some(function(child) {
-			child.destroy();
-		});
+		panelmenu.menu.removeAll();
 
 		// add itembox to the menu
 		sectionBox = null;
@@ -185,15 +180,15 @@ function _ArduinoPanelMenu(set) {
 		// change menu icon
 		icon.set_icon_name(syncIcon);
 
-
 		// remove any child items in the panelmenu
-		let visibleChildren = panelmenu.menu.box.get_children().some(function(child) {
-			child.destroy();
-		});
-
-
+		panelmenu.menu.removeAll();
+		
 		// add connect message
 		let MessageRecon = new PopupMenu.PopupMenuItem( _("Reconnecting to Server..."), { reactive: false });
+		// extension settings shortcut
+		let settingsMenuItem = new PopupMenu.PopupMenuItem("Settings", { reactive: true });
+		settingsMenuItem.connect('activate', function() { imports.misc.util.spawn(['gnome-shell-extension-prefs',
+			 'arduinocontrol@simonthechipmunk.noreply.com']); });
 		panelmenu.menu.addMenuItem(MessageRecon);
 		panelmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 		panelmenu.menu.addMenuItem(settingsMenuItem);
@@ -208,6 +203,7 @@ function _ArduinoPanelMenu(set) {
 		panelmenu.destroy();
 		panelmenu = null;
 		sectionBox = null;
+		icon = null;
 
 	}
 
@@ -228,6 +224,10 @@ function _ArduinoPanelMenu(set) {
 
 		// add connect message
 		let MessageInit = new PopupMenu.PopupMenuItem( _("Retrieving initial Connection..."), { reactive: false });
+		// extension settings shortcut
+		let settingsMenuItem = new PopupMenu.PopupMenuItem("Settings", { reactive: true });
+		settingsMenuItem.connect('activate', function() { imports.misc.util.spawn(['gnome-shell-extension-prefs',
+			 'arduinocontrol@simonthechipmunk.noreply.com']); });
 		panelmenu.menu.addMenuItem(MessageInit);
 		panelmenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 		panelmenu.menu.addMenuItem(settingsMenuItem);
@@ -324,7 +324,9 @@ function _SocketRead(gobject, async_res, user_data) {
 		firstrun = true;
 
 		// process received data
-		sectionBox._ProcessData(lineout);
+		if (sectionBox) {
+			sectionBox._ProcessData(lineout);
+		}
 
 	}
 

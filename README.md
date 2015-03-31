@@ -129,7 +129,7 @@ You have two options to get your Arduino running:
 *(fix)(concerns: python Socket Server) The serial address of the Arduino board may vary between reboots. The correct device has to be set up manually when starting the python Socket Server. Setting up udev rules should resolve this issue.
 
 *(concerns: w5100 Ethernet Module) I was only able to connect to this Module with one client at a time and it's output was also corrupted (Line break 
-after very single character). Maybe the Module I purchased is fake since it was a cheap one from China. If you happen to have a genuine w5100 Module 
+after every single character). Maybe the Module I purchased is fake since it was a cheap one from China. If you happen to have a genuine w5100 Module 
 around (Arduino Ethernet Shield) please let me know if it is working in a multi client setup.
 
 

@@ -36,12 +36,12 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
  * Get the settings Schema for gsettings
  * If @schema is not provided, it will be taken from metadata['gsettings-schema']
  */
-function _getSettingsSchema(schema) {
+function _getSettingsSchema(setschema) {
  
     	const GioSSS = Gio.SettingsSchemaSource;
 
 	// get the gsettings schema and path
-	let schema = schema || Me.metadata['settings-schema'];
+	let schema = setschema || Me.metadata['settings-schema'];
     	let source = GioSSS.new_from_directory(Me.dir.get_child('schemas').get_path(),
                                            GioSSS.get_default(),
                                            false);
@@ -62,9 +62,9 @@ function _getSettingsSchema(schema) {
  * Initialize Gettext to load translations from extensionsdir/locale.
  * If @domain is not provided, it will be taken from metadata['gettext-domain']
  */
-function _initTranslations(domain) {
+function _initTranslations(setdomain) {
 
-	let domain = domain || Me.metadata['gettext-domain'];
+	let domain = setdomain || Me.metadata['gettext-domain'];
 
 	// check if this extension was built with "make zip-file", and thus
 	// has the locale files in a subfolder
