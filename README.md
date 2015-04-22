@@ -4,8 +4,8 @@ This extension communicates with Arduino (Atmel µC) through a tcp Socket Server
 It is rather meant as a basic framework to show how to establish a Connection between Arduino and Clients. Go ahead and customize it to your needs: Add Sliders, Switches, etc. in the menu.js and Outputs/Inputs on the Arduino. Get Crazy and Control your Room Lights from any Computer on the Network ;)
 
 **Warning**
-If you update this extension from extensions.gnome.org, **ALL** files in the extension directory will be **OVERWRITTEN**. Any customization you made to 
-the extension will then be lost, so please make a backup before you click on "update".
+If you update this extension from extensions.gnome.org, **ALL** files in the extension directory will be **OVERWRITTEN**. Any customization you made to the extension will then be lost, so please make a backup before you click on "update".
+The only part that should need active customization is menu.js which is creating the menu entries. This makes it easy to save your custom configuration by just backing up menu.js and still being able to get the latest updates.
 
 
 
@@ -25,9 +25,9 @@ the extension will then be lost, so please make a backup before you click on "up
 You have two options to get your Arduino running:
 
 
-1. Use the Arduino as the Socket Server directly (You need an Ethernet Shield or sufficient adaptor like enc28J60 for this to work). Since this has the big advantage of not needing a Computer to serve as an interface between Arduino and the Clients, this is the recommended method.
+1. Use the Arduino as the Socket Server directly (You need an Ethernet Shield or sufficient adaptor like enc28J60 for this to work). Since this has the big advantage of not needing a Computer to serve as an interface between Arduino and the Clients, it is the recommended method. Using an ethernet Module unfortunately comes with limitations in terms of connectable clients (enc28J60: 4 clients, w5100: 1 client -> see "Known Issues")
 
-2. Use a Computer to run a python based Socket Server that communicates with Arduino via Serial (No additional Hardware is needed for this to work).
+2. Use a Computer to run a python based Socket Server that communicates with Arduino via Serial. No additional Hardware is needed for this to work and there are no limits when connecting multiple clients.
 
 
 
@@ -73,8 +73,8 @@ You have two options to get your Arduino running:
 
 	Load the "Arduino_Sketch_SocketServer_PythonSocketServer.ino" onto your Arduino
 
-	Determine what Serial Port your Arduino is connected to (IDE > Tools > SerialPort): something like [/dev/ttyUSB0] for generic Serial Converters 
-	or [/dev/ttyACM0] for Arduinos with Atmel Serial Converter
+	Determine what Serial Port your Arduino is connected to (IDE > Tools > SerialPort): something like /dev/ttyUSB0 for generic Serial Converters 
+	or /dev/ttyACM0 for Arduinos with Atmel Serial Converter
 
 	Make the python Script executable:
 
@@ -113,7 +113,7 @@ You have two options to get your Arduino running:
 
 
 ## Missing features
-* currently none. throw some ideas at me ;)
+* custom path to menu.js
 
 
 
@@ -128,9 +128,12 @@ You have two options to get your Arduino running:
 ## Known issues
 *(fix)(concerns: python Socket Server) The serial address of the Arduino board may vary between reboots. The correct device has to be set up manually when starting the python Socket Server. Setting up udev rules should resolve this issue.
 
-*(concerns: w5100 Ethernet Module) I was only able to connect to this Module with one client at a time and it's output was also corrupted (Line break 
-after every single character). Maybe the Module I purchased is fake since it was a cheap one from China. If you happen to have a genuine w5100 Module 
-around (Arduino Ethernet Shield) please let me know if it is working in a multi client setup.
+*(limitation)(concerns: w5100 Ethernet Module) It is only possible to connect to this module with one client at a time, even though the chip itself supports up to four connected clients. This is a limitation of the Arduino Ethernet library that only requests socket0. A feature request was already committed on the official Arduino GitHub repository but wasn't implemented yet.
+[https://github.com/arduino/Arduino/issues/1260]
+
+The UIPEthernet library for enc28J60 devices does not have this limitation. Many thanks again to Norbert Truchsess for his great work on this.
+
+
 
 
 
@@ -145,7 +148,7 @@ Version numbering follows the uploads to the extension website.
 
 **Version 4 (29-03-2015)**
 * auto reconnect and menu status messages
-* seperate menu.js for easier customization of the menu entries
+* separate menu.js for easier customization of the menu entries
 * github repository https://github.com/simonthechipmunk/arduinocontrol
 * support for translations
 

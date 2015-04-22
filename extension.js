@@ -316,6 +316,17 @@ function _SocketRead(gobject, async_res, user_data) {
 		}
 
 
+		if (lineout == null) {
+			// check for invalid data, return and wait for auto-reconnet
+			return;
+		}
+
+		else if (lineout == "client:connect") {
+			// check for loopback
+			global.log("The server is looping input! Check your serial port.");
+		}
+
+
 		// show the panelmenu
 		_ArduinoPanelMenu("show");
 
@@ -441,7 +452,7 @@ function _SocketConnect(gobject, async_res, user_data) {
 
 function _ConnectionLost() {
 // React on a lost connection to the Server
-
+	
 	// hide the panelmenu
 	_ArduinoPanelMenu("hide");
 
