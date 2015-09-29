@@ -152,5 +152,10 @@ Version numbering follows the uploads to the extension website.
 * github repository https://github.com/simonthechipmunk/arduinocontrol
 * support for translations
 
+**Version 5 (30-09-2015)**
+* fix auto-reconnect issue when using python server
+* fix several minor issues and gnome-shell warnings
+* support for gnome 3.18
+
 
 
