@@ -6,10 +6,11 @@
     "3.10", 
     "3.12", 
     "3.14",
-    "3.16"
+    "3.16",
+    "3.18"
   ], 
   "url": "https://github.com/simonthechipmunk/arduinocontrol", 
   "uuid": "arduinocontrol@simonthechipmunk.noreply.com", 
   "gettext-domain": "arduinocontrol",
-  "version": 4
+  "version": 5
 }
