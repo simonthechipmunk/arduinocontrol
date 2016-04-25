@@ -5,7 +5,7 @@
  * Simple bidirectional control of Arduino outputs through a gnome-shell panel menu
  *
  *
- * Author: Simon Junga (simonthechipmunk@gmx.de)
+ * Author: Simon Junga (simonthechipmunk at gmx.de)
  *
  * This extension is mostly based on code found in the following gnome-extensions:
  * shutdowntimer@lusk.cz

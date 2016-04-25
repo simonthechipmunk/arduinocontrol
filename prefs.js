@@ -25,8 +25,6 @@ const Utils = Me.imports.utils;
 
 
 
-
-
 // define global variables
 let settings = {};
 
