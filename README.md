@@ -157,5 +157,8 @@ Version numbering follows the uploads to the extension website.
 * fix several minor issues and gnome-shell warnings
 * support for gnome 3.18
 
+**Version 5 (27-04-2016)**
+* support for gnome 3.20
+
 
 
