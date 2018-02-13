@@ -1,0 +1,58 @@
+# Translation template for "Arduino Control".
+# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extension package.
+# Simon Junga <simonthechipmunk@gmx.de>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-27 18:01+0100\n"
+"PO-Revision-Date: 2015-03-29 19:32+0200\n"
+"Last-Translator: Simon <simon@simon-shell>\n"
+"Language-Team: English\n"
+"Language: en_EN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: extension.js:195
+msgid "Reconnecting to Server..."
+msgstr "Reconnecting to Server..."
+
+#: extension.js:228
+msgid "Retrieving initial Connection..."
+msgstr "Retrieving initial Connection..."
+
+#: extension.js:452 #: menu.js:118
+msgid "Arduino Control"
+msgstr "Arduino Control"
+
+#: extension.js:452
+msgid ""
+"The Server is available on the Network but not responding. Please check the "
+"Server and restart it."
+msgstr ""
+"The Server is available on the Network but not responding. Please check the "
+"Server and restart it."
+
+#: menu.js:118
+msgid "An Error Code was received from the Server:"
+msgstr "An Error Code was received from the Server:"
+
+#: prefs.js:70
+msgid "Server IP or URL"
+msgstr "Server IP or URL"
+
+#: prefs.js:70
+msgid "The IP Address of the Socket Server"
+msgstr "The IP Address of the Socket Server"
+
+#: prefs.js:71
+msgid "Server Port"
+msgstr "Server Port"
+
+#: prefs.js:71
+msgid "The Port the Socket Server is listening on"
+msgstr "The Port the Socket Server is listening on"

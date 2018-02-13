@@ -65,8 +65,8 @@ function buildPrefsWidget() {
 	let frame = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL, border_width: 10, margin: 20});
 
 	// add items to the widget frame
-	frame.add( _createIPbox( _("Server IP or URL"), _("The IP Address of the Socket Server") ));
-	frame.add( _createPORTbox( _("Server Port"), _("The Port the Socket Server is listening on") ));	
+	frame.add( _createTextBox( _("Server IP or URL"), _("The IP Address of the Socket Server"), _getIP, _setIP ));
+	frame.add( _createTextBox( _("Server Port"), _("The Port the Socket Server is listening on"), _getPort, _setPort ));	
 	frame.show_all();
 	return frame;
 }
@@ -78,14 +78,14 @@ function buildPrefsWidget() {
 
 //***// preferences functions
 
-function _createIPbox(text, tooltip) {
+function _createTextBox(text, tooltip, getFunction, setFunction) {
 // create box with text entry for Server IP
-	let box = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL });
+	let box = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL, margin: 5 });
 	let label = new Gtk.Label({ label: text, xalign: 0, tooltip_text: tooltip });
-	let textbox = new Gtk.Entry({ text : _getIP() });
+	let textbox = new Gtk.Entry({ text : getFunction(), tooltip_text: tooltip });
 	
 	// connect to "text-changed" emit signal
-    	textbox.connect('changed', function() { _setIP(textbox.get_text()); });
+    	textbox.connect('changed', function() { setFunction(textbox.get_text()); });
 
 	//fill the box with content
 	box.pack_start(label, true, true, 0);
@@ -94,23 +94,6 @@ function _createIPbox(text, tooltip) {
 	return box;
 }
 
-
-
-function _createPORTbox(text, tooltip) {
-// create box with text entry for Server Port
-	let box = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL });
-	let label = new Gtk.Label({ label: text, xalign: 0, tooltip_text: tooltip });
-	let textbox = new Gtk.Entry({ text : _getPort() });
-
-	// connect to "text-changed" emit signal
-    	textbox.connect('changed', function() { _setPort(textbox.get_text()); });
-
-	//fill the box with content
-	box.pack_start(label, true, true, 0);
-	box.add(textbox, true, true, 5);
-
-	return box;
-}
 
 
 
