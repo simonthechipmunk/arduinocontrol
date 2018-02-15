@@ -163,3 +163,6 @@ Version numbering follows the uploads to the extension website.
 **Version 7 (02-10-2016)**
 * support for gnome 3.22
 
+**Version 8 (15-02-2018)**
+* support for gnome 3.26
+
